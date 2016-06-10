@@ -14,9 +14,11 @@ gunicorn==19.4.5
 itsdangerous==0.24
 pip-autoremove==0.9.0
 pyjade==4.0.0
-pyscraper-framework==0.0.7
+pyscraper-framework==0.0.42
 python-editor==1.0
 redis==2.10.5
 requests==2.9.1
 rq==0.5.6
+semver==2.4.1
 six==1.10.0
+tinys3==0.1.11
