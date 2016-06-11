@@ -1,4 +1,4 @@
-from pyscraper_framework import Loader as Loader
+from pyetl_framework import Loader as Loader
 from lib import S3Loader as S3Loader
 
 class YellowstonePropertyTax(S3Loader):

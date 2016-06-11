@@ -1,4 +1,4 @@
-from pyscraper_framework import Transformer as Transformer
+from pyetl_framework import Transformer as Transformer
 
 class YellowstoneOrion(Transformer):
     def __init__(self):

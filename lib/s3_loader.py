@@ -1,5 +1,5 @@
-import requests, tinys3, urllib
-from pyscraper_framework import Loader
+import requests, tinys3, urllib, os
+from pyetl_framework import Loader
 from io import BytesIO, StringIO
 
 class S3Loader(Loader):

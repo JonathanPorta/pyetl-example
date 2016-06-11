@@ -1,4 +1,4 @@
-from pyscraper_framework import Loader as Loader
+from pyetl_framework import Loader as Loader
 
 class YellowstoneOrion(Loader):
     def __init__(self):

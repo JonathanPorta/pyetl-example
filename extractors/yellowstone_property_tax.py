@@ -1,5 +1,5 @@
 import time
-from pyscraper_framework import Extractor as Extractor
+from pyetl_framework import Extractor as Extractor
 from lib import UrlExtractor as UrlExtractor
 
 class YellowstonePropertyTax(UrlExtractor):

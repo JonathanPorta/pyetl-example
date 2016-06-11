@@ -1,4 +1,4 @@
-from pyscraper_framework import Transformer as Transformer
+from pyetl_framework import Transformer as Transformer
 
 class YellowstonePropertyTax(Transformer):
     def __init__(self):

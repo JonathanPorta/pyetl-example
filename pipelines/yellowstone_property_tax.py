@@ -1,4 +1,4 @@
-from pyscraper_framework import Pipeline as Pipeline
+from pyetl_framework import Pipeline as Pipeline
 from bs4 import BeautifulSoup
 import requests, re
 

@@ -1,5 +1,5 @@
-from pyscraper_framework import Pipeline as Pipeline
-from pyscraper_framework import ETLJob as ETLJob
+from pyetl_framework import Pipeline as Pipeline
+from pyetl_framework import ETLJob as ETLJob
 
 class YellowstoneOrion(Pipeline):
     def __init__(self, pipeline_manager, name, extractor_class, transformer_class, loader_class):

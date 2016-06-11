@@ -1,5 +1,5 @@
 import requests
-from pyscraper_framework import Extractor
+from pyetl_framework import Extractor
 
 class UrlExtractor(Extractor):
 
