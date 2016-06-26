@@ -1,2 +1,2 @@
-flask: make run_flask
+web: make run_flask
 worker: make run_worker
