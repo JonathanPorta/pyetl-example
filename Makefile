@@ -30,8 +30,18 @@ setup_heroku:
 	git remote add heroku-staging git@heroku.com:$(APP_NAME)-staging.git
 	git remote add heroku-production git@heroku.com:$(APP_NAME)-production.git
 
+setup_heroku_env:
+	heroku config:set APP_SETTINGS=config.StagingConfig --remote heroku-staging
+	heroku config:set APP_SETTINGS=config.ProductionConfig --remote heroku-production
+
 deploy_staging:
 	git push heroku-staging master
 
 deploy_production:
 	git push heroku-production master
+
+run_flask:
+	pyetl_flask # pip should link this as an executable when the pyetl dependency is installed.
+
+run_worker:
+	pyetl_worker # pip should link this as an executable when the pyetl dependency is installed.
