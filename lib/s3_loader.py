@@ -6,6 +6,8 @@ class S3Loader(Loader):
     def upload(self, key, value, bucket):
         key_encoded = urllib.parse.quote_plus(key)
         print('key_encoded', key_encoded)
+        key_encoded = "{}{}".format(key_encoded, '.htm')
+        print('key_encoded with ext', key_encoded)
         print('bucket', bucket)
         value = StringIO(value)
         value_encoded = BytesIO(value.getvalue().encode('utf-8'))
