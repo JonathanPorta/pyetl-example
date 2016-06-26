@@ -31,8 +31,8 @@ setup_heroku:
 	git remote add heroku-production git@heroku.com:$(APP_NAME)-production.git
 
 setup_heroku_env:
-	heroku config:set APP_SETTINGS=config.StagingConfig --remote heroku-staging
-	heroku config:set APP_SETTINGS=config.ProductionConfig --remote heroku-production
+	heroku config:set APP_SETTINGS=StagingConfig --remote heroku-staging
+	heroku config:set APP_SETTINGS=ProductionConfig --remote heroku-production
 
 deploy_staging:
 	git push heroku-staging master
