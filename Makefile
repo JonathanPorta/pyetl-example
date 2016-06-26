@@ -1,6 +1,12 @@
 APP_NAME := pyetl-example
+# set a default for the port if none is specified
+ifeq ($(PORT),)
+	PORT := 5000
+endif
 
-install_deps:
+install: python_deps
+
+python_deps:
 	pip install -r requirements.txt
 
 clean_deps:
@@ -41,7 +47,7 @@ deploy_production:
 	git push heroku-production master
 
 run_flask:
-	APP_BASEDIR=$(shell pwd) pyetl_flask # pip should link this as an executable when the pyetl dependency is installed.
+	APP_BASEDIR=$(shell pwd) FLASK_PORT=${PORT} pyetl_flask # pip should link this as an executable when the pyetl dependency is installed.
 
 run_worker:
 	APP_BASEDIR=$(shell pwd) pyetl_worker # pip should link this as an executable when the pyetl dependency is installed.
