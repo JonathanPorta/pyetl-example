@@ -40,6 +40,10 @@ setup_heroku_env:
 	heroku config:set APP_SETTINGS=StagingConfig --remote heroku-staging
 	heroku config:set APP_SETTINGS=ProductionConfig --remote heroku-production
 
+setup_heroku_redis:
+	heroku addons:create redistogo:nano --app $(APP_NAME)-staging
+	heroku addons:create redistogo:nano --app $(APP_NAME)-production
+
 deploy_staging:
 	git push heroku-staging master
 
