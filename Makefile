@@ -41,7 +41,7 @@ deploy_production:
 	git push heroku-production master
 
 run_flask:
-	pyetl_flask # pip should link this as an executable when the pyetl dependency is installed.
+	APP_BASEDIR=$(pwd) pyetl_flask # pip should link this as an executable when the pyetl dependency is installed.
 
 run_worker:
-	pyetl_worker # pip should link this as an executable when the pyetl dependency is installed.
+	APP_BASEDIR=$(pwd) pyetl_worker # pip should link this as an executable when the pyetl dependency is installed.
