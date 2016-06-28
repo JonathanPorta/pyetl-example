@@ -12,8 +12,8 @@ class YellowstonePropertyTax(UrlExtractor):
 
     def execute(self):
         print("YellowstonePropertyTaxExtractor::execute() for url: ", self.url)
-        data = {'url': self.url, 'data': self.GET(self.url, headers={'User-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.108 Safari/537.36'})}
-        print('Got data back for ', data['url'], data['data'])
+        data = {'url': self.url, 'data': self.GET(self.url, headers={'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.108 Safari/537.36'})}
+        print('Got data back for ', data['url'])
         return data
 
         # # for testing
