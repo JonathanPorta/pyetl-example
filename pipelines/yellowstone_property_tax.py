@@ -7,8 +7,8 @@ class YellowstonePropertyTax(Pipeline):
     def url(self, page=1, page_size=10):
         # URL is longer by default, but it appears unnecessary to add all of these empty valued query params.
         # http://www.co.yellowstone.mt.gov/gis/csacond.asp?whichpage=1&pagesize=1000&Tax_ID=&OwnerName=&Post_dir=&Str_Num=&Pre_dir=&Street_Addr=&Blk=&St_type=&Cert=&Subd=&Lot=&Geo_code=&B1=Submit
-        return "http://yellowstone.mt.gov" # expecting to have dns issue
-        return "http://mt.gov" # works!
+        # return "http://yellowstone.mt.gov" # expecting to have dns issue
+        # return "http://mt.gov" # works!
         return "http://co.yellowstone.mt.gov"
         return "http://co.yellowstone.mt.gov/gis/csacond.asp?whichpage={}&pagesize={}".format(page, page_size)
 
