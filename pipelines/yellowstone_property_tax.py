@@ -24,26 +24,33 @@ class YellowstonePropertyTax(Pipeline):
         super().start(queue)
         print("YellowstonePropertyTax::start()", queue)
 
-        self.results = self.GET(self.url(page=1))
-        self.generate_counts()
+        e = self.init_extractor(self.url(page=1))
+        queued_job = queue.enqueue_call(
+            func=e.execute, result_ttl=5000
+        )
+        print('==========STARTER JOB QUEUED===========')
 
-        if self.limit > 0:
-            self.limit = min(self.page_count, self.limit)
-        else:
-            self.limit = self.page_count
-
-        for page in range(1, self.limit+1):
-            url = self.url(page=page)
-            print("URL for page #{}: {}".format(page, url))
-            extractor = self.init_extractor(url)
-            job = self.init_etl_job(extractor=extractor)
-            print("JOB: ", job)
-            queued_job = queue.enqueue_call(
-                func=job.execute, result_ttl=5000
-            )
-
-            job_id = queued_job.get_id()
-            print("Job was queued, bro", job_id)
+        # self.results = self.GET(self.url(page=1))
+        # self.generate_counts()
+        #
+        # if self.limit > 0:
+        #     self.limit = min(self.page_count, self.limit)
+        # else:
+        #     self.limit = self.page_count
+        #
+        #
+        # for page in range(1, self.limit+1):
+        #     url = self.url(page=page)
+        #     print("URL for page #{}: {}".format(page, url))
+        #     extractor = self.init_extractor(url)
+        #     job = self.init_etl_job(extractor=extractor)
+        #     print("JOB: ", job)
+        #     queued_job = queue.enqueue_call(
+        #         func=job.execute, result_ttl=5000
+        #     )
+        #
+        #     job_id = queued_job.get_id()
+        #     print("Job was queued, bro", job_id)
 
     def generate_counts(self):
         regex = re.compile("Page 1 of ([0-9]+) from ([0-9]+) total records")

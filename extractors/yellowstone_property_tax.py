@@ -12,7 +12,9 @@ class YellowstonePropertyTax(UrlExtractor):
 
     def execute(self):
         print("YellowstonePropertyTaxExtractor::execute() for url: ", self.url)
-        return {'url': self.url, 'data': self.GET(self.url)}
+        data = {'url': self.url, 'data': self.GET(self.url)}
+        print('Got data back for ', data['url'], data['data'])
+        return data
 
         # # for testing
         # # # some simple caching while we test so we don't annoy anyone at the tax site. =)
