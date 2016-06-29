@@ -40,6 +40,39 @@ setup_heroku_env:
 	heroku config:set APP_SETTINGS=StagingConfig --remote heroku-staging
 	heroku config:set APP_SETTINGS=ProductionConfig --remote heroku-production
 
+setup_heroku_secrets:
+	# s3 credentials
+	heroku config:set S3_ACCESS_ID=${S3_ACCESS_ID} --remote heroku-staging
+	heroku config:set S3_SECRET_KEY=${S3_SECRET_KEY} --remote heroku-staging
+
+	# http proxy creds
+	heroku config:set PROXY_HTTP_HOSTNAME=${PROXY_HTTP_HOSTNAME} --remote heroku-staging
+	heroku config:set PROXY_HTTP_USERNAME=${PROXY_HTTP_USERNAME} --remote heroku-staging
+	heroku config:set PROXY_HTTP_PASSWORD=${PROXY_HTTP_PASSWORD} --remote heroku-staging
+	heroku config:set PROXY_HTTP_PORT=${PROXY_HTTP_PORT} --remote heroku-staging
+
+	# https proxy creds
+	heroku config:set PROXY_HTTPS_HOSTNAME=${PROXY_HTTPS_HOSTNAME} --remote heroku-staging
+	heroku config:set PROXY_HTTPS_USERNAME=${PROXY_HTTPS_USERNAME} --remote heroku-staging
+	heroku config:set PROXY_HTTPS_PASSWORD=${PROXY_HTTPS_PASSWORD} --remote heroku-staging
+	heroku config:set PROXY_HTTPS_PORT=${PROXY_HTTPS_PORT} --remote heroku-staging
+
+	# s3 credentials
+	heroku config:set S3_ACCESS_ID=${S3_ACCESS_ID} --remote heroku-production
+	heroku config:set S3_SECRET_KEY=${S3_SECRET_KEY} --remote heroku-production
+
+	# http proxy creds
+	heroku config:set PROXY_HTTP_HOSTNAME=${PROXY_HTTP_HOSTNAME} --remote heroku-production
+	heroku config:set PROXY_HTTP_USERNAME=${PROXY_HTTP_USERNAME} --remote heroku-production
+	heroku config:set PROXY_HTTP_PASSWORD=${PROXY_HTTP_PASSWORD} --remote heroku-production
+	heroku config:set PROXY_HTTP_PORT=${PROXY_HTTP_PORT} --remote heroku-production
+
+	# https proxy creds
+	heroku config:set PROXY_HTTPS_HOSTNAME=${PROXY_HTTPS_HOSTNAME} --remote heroku-production
+	heroku config:set PROXY_HTTPS_USERNAME=${PROXY_HTTPS_USERNAME} --remote heroku-production
+	heroku config:set PROXY_HTTPS_PASSWORD=${PROXY_HTTPS_PASSWORD} --remote heroku-production
+	heroku config:set PROXY_HTTPS_PORT=${PROXY_HTTPS_PORT} --remote heroku-production
+
 setup_heroku_redis:
 	heroku addons:create redistogo:nano --app $(APP_NAME)-staging
 	heroku addons:create redistogo:nano --app $(APP_NAME)-production

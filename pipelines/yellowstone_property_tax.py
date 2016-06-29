@@ -7,9 +7,6 @@ class YellowstonePropertyTax(Pipeline):
     def url(self, page=1, page_size=10):
         # URL is longer by default, but it appears unnecessary to add all of these empty valued query params.
         # http://www.co.yellowstone.mt.gov/gis/csacond.asp?whichpage=1&pagesize=1000&Tax_ID=&OwnerName=&Post_dir=&Str_Num=&Pre_dir=&Street_Addr=&Blk=&St_type=&Cert=&Subd=&Lot=&Geo_code=&B1=Submit
-        # return "http://yellowstone.mt.gov" # expecting to have dns issue
-        # return "http://mt.gov" # works!
-        return "http://co.yellowstone.mt.gov"
         return "http://co.yellowstone.mt.gov/gis/csacond.asp?whichpage={}&pagesize={}".format(page, page_size)
 
     def __init__(self, *args, limit=1, **kwargs):
@@ -27,33 +24,26 @@ class YellowstonePropertyTax(Pipeline):
         super().start(queue)
         print("YellowstonePropertyTax::start()", queue)
 
-        e = self.init_extractor(self.url(page=1))
-        queued_job = queue.enqueue_call(
-            func=e.execute, result_ttl=5000
-        )
-        print('==========STARTER JOB QUEUED===========')
+        self.results = self.GET(self.url(page=1))
+        self.generate_counts()
 
-        # self.results = self.GET(self.url(page=1))
-        # self.generate_counts()
-        #
-        # if self.limit > 0:
-        #     self.limit = min(self.page_count, self.limit)
-        # else:
-        #     self.limit = self.page_count
-        #
-        #
-        # for page in range(1, self.limit+1):
-        #     url = self.url(page=page)
-        #     print("URL for page #{}: {}".format(page, url))
-        #     extractor = self.init_extractor(url)
-        #     job = self.init_etl_job(extractor=extractor)
-        #     print("JOB: ", job)
-        #     queued_job = queue.enqueue_call(
-        #         func=job.execute, result_ttl=5000
-        #     )
-        #
-        #     job_id = queued_job.get_id()
-        #     print("Job was queued, bro", job_id)
+        if self.limit > 0:
+            self.limit = min(self.page_count, self.limit)
+        else:
+            self.limit = self.page_count
+
+        for page in range(1, self.limit+1):
+            url = self.url(page=page)
+            print("URL for page #{}: {}".format(page, url))
+            extractor = self.init_extractor(url)
+            job = self.init_etl_job(extractor=extractor)
+            print("JOB: ", job)
+            queued_job = queue.enqueue_call(
+                func=job.execute, result_ttl=5000
+            )
+
+            job_id = queued_job.get_id()
+            print("Job was queued, bro", job_id)
 
     def generate_counts(self):
         regex = re.compile("Page 1 of ([0-9]+) from ([0-9]+) total records")

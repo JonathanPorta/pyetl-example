@@ -1,4 +1,4 @@
-import time
+import time, os
 from pyetl_framework import Extractor as Extractor
 from lib import UrlExtractor as UrlExtractor
 
@@ -16,8 +16,8 @@ class YellowstonePropertyTax(UrlExtractor):
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.108 Safari/537.36'
         }
         proxy = {
-            'http'  : 'mtna.porta.codes'#,
-            # 'https' : 'username:mypassword@77.75.105.165'
+            'http': 'http://{}:{}@{}:{}'.format(os.environ['PROXY_HTTP_USERNAME'], os.environ['PROXY_HTTP_PASSWORD'], os.environ['PROXY_HTTP_HOSTNAME'], os.environ['PROXY_HTTP_PORT']),
+            'https': 'https://{}:{}@{}:{}'.format(os.environ['PROXY_HTTPS_USERNAME'], os.environ['PROXY_HTTPS_PASSWORD'], os.environ['PROXY_HTTPS_HOSTNAME'], os.environ['PROXY_HTTPS_PORT'])
         }
         data = {'url': self.url, 'data': self.GET(self.url, headers=headers, proxies=proxy)}
         print('Got data back for ', data['url'])
