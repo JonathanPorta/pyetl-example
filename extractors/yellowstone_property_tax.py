@@ -19,7 +19,7 @@ class YellowstonePropertyTax(UrlExtractor):
             'http'  : 'mtna.porta.codes'#,
             # 'https' : 'username:mypassword@77.75.105.165'
         }
-        data = {'url': self.url, 'data': self.GET(self.url, headers=headers, proxy=proxy)}
+        data = {'url': self.url, 'data': self.GET(self.url, headers=headers, proxies=proxy)}
         print('Got data back for ', data['url'])
         return data
 
