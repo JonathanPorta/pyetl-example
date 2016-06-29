@@ -12,7 +12,14 @@ class YellowstonePropertyTax(UrlExtractor):
 
     def execute(self):
         print("YellowstonePropertyTaxExtractor::execute() for url: ", self.url)
-        data = {'url': self.url, 'data': self.GET(self.url, headers={'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.108 Safari/537.36'})}
+        headers = {
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.108 Safari/537.36'
+        }
+        proxy = {
+            'http'  : 'mtna.porta.codes'#,
+            # 'https' : 'username:mypassword@77.75.105.165'
+        }
+        data = {'url': self.url, 'data': self.GET(self.url, headers=headers, proxy=proxy)}
         print('Got data back for ', data['url'])
         return data
 
